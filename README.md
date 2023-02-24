@@ -1,2 +1,2 @@
-# java-8-in-action
+# Java 8 in action
 A resume about Java 8 in Action book
