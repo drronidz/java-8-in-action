@@ -58,8 +58,7 @@ public class FilteringTomatoes {
         // Calling filterTomatoes by Predicate (isHeavyTomato to get all Heavy Tomatoes in inventory)
         filterTomatoes(inventory, Tomato::isHeavyTomato);
 
-
-        // From passing methods by predicates to lambdas :
+        /* From passing methods by predicates to lambdas : */
         filterTomatoes(inventory, (Tomato tomato) -> "green".equals(tomato.getColor()));
         filterTomatoes(inventory, (Tomato tomato) -> tomato.getWeight() > 150);
         filterTomatoes(inventory, (Tomato tomato) -> tomato.getWeight() < 80 || "brown".equals(tomato.getColor()));
