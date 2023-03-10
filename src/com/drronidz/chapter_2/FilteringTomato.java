@@ -48,7 +48,7 @@ public class FilteringTomato {
         return result;
     }
 
-    /*  2.1.3 Second attempt: filtering with every attribute ou can think of */
+    /*  2.1.3 Third attempt: filtering with every attribute ou can think of */
     public static List<Tomato> filterTomatoes (List<Tomato> inventory, String color, int weight, boolean flag) {
         List<Tomato> result = new ArrayList<>();
         for (Tomato tomato: inventory) {
@@ -60,6 +60,70 @@ public class FilteringTomato {
     }
 
     /** Behavior parameterization **/
+
+    public static interface TomatoPredicate {
+        boolean test (Tomato tomato);
+    }
+
+    public static class TomatoGreenColorPredicate implements TomatoPredicate {
+        @Override
+        public boolean test(Tomato tomato) {
+            return "green".equals(tomato.getColor());
+        }
+    }
+
+    public static class TomatoHeavyWeightPredicate implements TomatoPredicate {
+        @Override
+        public boolean test(Tomato tomato) {
+            return tomato.getWeight() > 150;
+        }
+    }
+
+    public static class TomatoRedAndHeavyPredicate implements TomatoPredicate {
+        @Override
+        public boolean test(Tomato tomato) {
+            return "red".equals(tomato.getColor()) && tomato.getWeight() > 150;
+        }
+    }
+
+    /*  2.2.1 Fourth attempt: filtering by abstract criteria */
+    public static List<Tomato> filterTomatoes(List<Tomato> inventory, TomatoPredicate predicate) {
+        List<Tomato> result = new ArrayList<>();
+        for (Tomato tomato: inventory) {
+            if (predicate.test(tomato)) {
+                result.add(tomato);
+            }
+        }
+        return result;
+    }
+
+    /* Quiz : write a flexible prettyPrintTomato method */
+    public static interface TomatoFormatter {
+        String accept(Tomato tomato);
+    }
+
+    public static class TomatoFancyFormatter implements TomatoFormatter {
+        @Override
+        public String accept(Tomato tomato) {
+            String characteristic = tomato.getWeight() > 150 ? "heavy" : "light";
+            return "A " + characteristic + " " + tomato.getColor() + " tomato";
+        }
+    }
+
+    public static class TomatoSimpleFormatter implements TomatoFormatter {
+        @Override
+        public String accept(Tomato tomato) {
+            return "A tomato of " + tomato.getWeight() + "g";
+        }
+    }
+
+    public static void prettyPrintTomato(List<Tomato> inventory,TomatoFormatter formatter) {
+        for (Tomato tomato: inventory) {
+            String output = formatter.accept(tomato);
+            System.out.println(output);
+        }
+    }
+
     /** Anonymous classes **/
     /** Preview of lambda expressions **/
     /** Real-world examples: Comparator, Runnable, and GUI **/
@@ -68,7 +132,9 @@ public class FilteringTomato {
 
         List<Tomato> inventory = Arrays.asList(
                 new Tomato(80, "red"),
-                new Tomato(150, "green"),
+                new Tomato(190, "red"),
+                new Tomato(150, "yellow"),
+                new Tomato(180, "green"),
                 new Tomato(110, "purple"));
 
         /** 2.1 Coping with changing requirements **/
@@ -76,7 +142,13 @@ public class FilteringTomato {
         List<Tomato> heavyTomatoes = filterTomatoesByWeight(inventory, 150);
 
         /** Behavior parameterization **/
+        List<Tomato> heavyTomatoesWithPredicate = filterTomatoes(inventory, new TomatoHeavyWeightPredicate());
+        List<Tomato> redAndHeavyTomatoes = filterTomatoes(inventory, new TomatoRedAndHeavyPredicate());
 
+        // with Fancy formatter ...
+        prettyPrintTomato(inventory, new TomatoFancyFormatter());
+        // with Simple formatter ...
+        prettyPrintTomato(inventory, new TomatoSimpleFormatter());
     }
 }
 
