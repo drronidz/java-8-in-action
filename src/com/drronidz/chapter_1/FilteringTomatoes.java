@@ -79,6 +79,8 @@ public class FilteringTomatoes {
                         .parallelStream()
                         .filter((Tomato tomato) -> tomato.getWeight() > 150)
                         .collect(toList());
+
+        /** 1.4 Default methods **/
     }
 
     public static class Tomato {
