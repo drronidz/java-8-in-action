@@ -63,9 +63,22 @@ public class FilteringTomatoes {
         filterTomatoes(inventory, (Tomato tomato) -> tomato.getWeight() > 150);
         filterTomatoes(inventory, (Tomato tomato) -> tomato.getWeight() < 80 || "brown".equals(tomato.getColor()));
 
-        /** Streams **/
 
-
+        /** 1.3 Streams **/
+        /* Todo: coding this from chapter 4-7 */
+        /* 1.3.1 Multithreading is difficult */
+        // sequential processing
+        List<Tomato> heavyTomatoesSequential =
+                inventory
+                        .stream()
+                        .filter((Tomato tomato) -> tomato.getWeight() > 150)
+                        .collect(toList());
+        // parallel processing
+        List<Tomato> heavyTomatoesParallel =
+                inventory
+                        .parallelStream()
+                        .filter((Tomato tomato) -> tomato.getWeight() > 150)
+                        .collect(toList());
     }
 
     public static class Tomato {
