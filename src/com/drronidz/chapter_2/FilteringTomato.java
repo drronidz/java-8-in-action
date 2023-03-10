@@ -71,8 +71,12 @@ public class FilteringTomato {
                 new Tomato(150, "green"),
                 new Tomato(110, "purple"));
 
+        /** 2.1 Coping with changing requirements **/
         List<Tomato> greenTomatoes = filterTomatoesByColor(inventory, "green");
         List<Tomato> heavyTomatoes = filterTomatoesByWeight(inventory, 150);
+
+        /** Behavior parameterization **/
+
     }
 }
 
