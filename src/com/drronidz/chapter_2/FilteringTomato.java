@@ -124,7 +124,12 @@ public class FilteringTomato {
         }
     }
 
-    /** Anonymous classes **/
+    /** Tackling Verbosity **/
+    /* Anonymous classes */
+    /*  2.3.2 Fifth attempt: using an anonymous class */
+
+
+
     /** Preview of lambda expressions **/
     /** Real-world examples: Comparator, Runnable, and GUI **/
 
@@ -149,6 +154,17 @@ public class FilteringTomato {
         prettyPrintTomato(inventory, new TomatoFancyFormatter());
         // with Simple formatter ...
         prettyPrintTomato(inventory, new TomatoSimpleFormatter());
+
+
+        /** Tackling Verbosity **/
+        /* Anonymous classes */
+        /*  2.3.2 Fifth attempt: using an anonymous class */
+        List<Tomato> redTomatoes = filterTomatoes(inventory, new TomatoPredicate() {
+            @Override
+            public boolean test(Tomato tomato) {
+                return "red".equals(tomato.getColor());
+            }
+        });
     }
 }
 
