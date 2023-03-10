@@ -63,6 +63,8 @@ public class FilteringTomatoes {
         filterTomatoes(inventory, (Tomato tomato) -> tomato.getWeight() > 150);
         filterTomatoes(inventory, (Tomato tomato) -> tomato.getWeight() < 80 || "brown".equals(tomato.getColor()));
 
+        /** Streams **/
+
 
     }
 
