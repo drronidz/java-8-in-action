@@ -7,10 +7,10 @@ Author Name : @ DRRONIDZ
 DATE : 3/11/2023 3:57 PM
 */
 
+
 import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
-import java.util.function.Consumer;
 import java.util.function.Predicate;
 
 public class FilteringTomato {
@@ -44,7 +44,7 @@ public class FilteringTomato {
     }
 
     /** Where and how to use lambdas **/
-    /* 3.2.1 Functional Interfaces*/
+    /* 3.2.1 Functional Interfaces */
     // Quiz
     public static interface Adder {
         int add(int a,int b);
@@ -55,6 +55,12 @@ public class FilteringTomato {
     }
 
     public static interface Nothing {
-
     }
+
+    /* 3.2.2 Function descriptor */
+    public void process(Runnable runnable) {
+        runnable.run();
+    }
+
+    Runnable runnableOne = () -> System.out.println("Hello World One 1");
 }
