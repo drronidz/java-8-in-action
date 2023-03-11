@@ -11,6 +11,7 @@ DATE : 3/11/2023 3:57 PM
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
@@ -54,6 +55,13 @@ public class FilteringTomato {
         /* Step 4: Pass lambdas */
         String oneLine = processFile((BufferedReader br) -> br.readLine());
         String twoLines = processFile((BufferedReader br) -> br.readLine() + br.readLine());
+
+        /** Using Functional Interfaces **/
+        /* Working with Predicate */
+        Predicate<Tomato> lightTomatoesPredicate = (Tomato tomato) -> tomato.getWeight() < 150;
+        List<Tomato> lightTomatoes = filter(inventory, lightTomatoesPredicate);
+
+        /*Working with Consumer*/
     }
 
     /** Where and how to use lambdas **/
@@ -97,7 +105,14 @@ public class FilteringTomato {
         }
     }
 
-
-
-
+    /* Working with a Predicate*/
+    public static <T> List<T> filter(List<T> list, Predicate<T> predicate) {
+        List<T> results = new ArrayList<>();
+        for(T s: list) {
+            if (predicate.test(s)) {
+                results.add(s);
+            }
+        }
+        return results;
+    }
 }
