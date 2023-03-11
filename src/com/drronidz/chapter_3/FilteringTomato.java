@@ -8,13 +8,16 @@ DATE : 3/11/2023 3:57 PM
 */
 
 
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
 import java.util.function.Predicate;
 
 public class FilteringTomato {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
 
         List<Tomato> inventory = Arrays.asList(
                 new Tomato(80, "red"),
@@ -41,6 +44,16 @@ public class FilteringTomato {
 
         // Valid Lambda expressions in Java 8
         Predicate<Tomato> predicate = (Tomato tomato) -> tomato.getWeight() > 150;
+
+
+
+        /** Where and how to use lambdas **/
+
+
+        /** Putting lambdas into practice: The execute around pattern **/
+        /* Step 4: Pass lambdas */
+        String oneLine = processFile((BufferedReader br) -> br.readLine());
+        String twoLines = processFile((BufferedReader br) -> br.readLine() + br.readLine());
     }
 
     /** Where and how to use lambdas **/
@@ -63,4 +76,28 @@ public class FilteringTomato {
     }
 
     Runnable runnableOne = () -> System.out.println("Hello World One 1");
+
+    /** Putting lambdas into practice: The execute around pattern **/
+    /* Step 1: */
+    public static String processFile() throws IOException {
+        try (BufferedReader br = new BufferedReader(new FileReader("data.txt"))) {
+            return br.readLine();
+        }
+    }
+    /* Step 2: Use a functional interface to pass behaviors */
+    @FunctionalInterface
+    public static interface BufferedReaderProcessor {
+        String process(BufferedReader bufferedReader) throws IOException;
+    }
+
+    /* Step 3: Execute a behavior !*/
+    public static String processFile(BufferedReaderProcessor processor) throws IOException {
+        try (BufferedReader br = new BufferedReader(new FileReader("data.txt"))) {
+            return processor.process(br);
+        }
+    }
+
+
+
+
 }
