@@ -176,7 +176,14 @@ public class FilteringTomato {
         /*  2.3.4 Seventh attempt: abstracting over List type */
 
 
-
+        /** Real-world examples: Comparator, Runnable, and GUI **/
+        inventory.sort(new Comparator<Tomato>() {
+            @Override
+            public int compare(Tomato tomatoOne, Tomato tomatoTwo) {
+                return tomatoOne.getWeight().compareTo(tomatoTwo.getWeight());
+            }
+        });
+        inventory.sort((tomatoOne, tomatoTwo) -> tomatoOne.getWeight().compareTo(tomatoTwo.getWeight()));
     }
 }
 
