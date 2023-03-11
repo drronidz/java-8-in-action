@@ -11,7 +11,10 @@ import com.drronidz.chapter_1.FilteringTomatoes;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Comparator;
 import java.util.List;
+
+import static java.util.Locale.filter;
 
 public class FilteringTomato {
     /*TODO Chapter 2: Passing code with behavior parameterization */
@@ -165,6 +168,15 @@ public class FilteringTomato {
                 return "red".equals(tomato.getColor());
             }
         });
+
+        /** Preview of lambda expressions **/
+        /*  2.3.3 Sixth attempt: using a lambda expression */
+        List<Tomato> result = filterTomatoes(inventory, (Tomato tomato) -> "red".equals(tomato.getColor()));
+
+        /*  2.3.4 Seventh attempt: abstracting over List type */
+
+
+
     }
 }
 
