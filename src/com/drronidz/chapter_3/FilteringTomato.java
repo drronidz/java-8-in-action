@@ -42,4 +42,19 @@ public class FilteringTomato {
         // Valid Lambda expressions in Java 8
         Predicate<Tomato> predicate = (Tomato tomato) -> tomato.getWeight() > 150;
     }
+
+    /** Where and how to use lambdas **/
+    /* 3.2.1 Functional Interfaces*/
+    // Quiz
+    public static interface Adder {
+        int add(int a,int b);
+    }
+
+    public static interface SmartAdder extends Adder {
+        int add(double a, double b);
+    }
+
+    public static interface Nothing {
+
+    }
 }
