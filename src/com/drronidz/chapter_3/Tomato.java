@@ -8,7 +8,7 @@ DATE : 3/10/2023 3:47 PM
 */
 
 
-public class Tomato {
+public class Tomato extends Fruit{
     private int weight = 0;
     private String color = "";
 

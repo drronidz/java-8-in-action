@@ -11,10 +11,7 @@ DATE : 3/11/2023 3:57 PM
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Comparator;
-import java.util.List;
+import java.util.*;
 import java.util.function.*;
 
 public class FilteringTomato {
@@ -200,11 +197,23 @@ public class FilteringTomato {
 //    }
 
     /* Method reference */
+
     public static List<Tomato> map(List<Integer> list, Function<Integer, Tomato> function) {
         List<Tomato> result = new ArrayList<>();
         for(Integer integer: list) {
             result.add(function.apply(integer));
         }
         return result;
+    }
+
+    // Constructor reference
+    static Map<String, Function<Integer, Fruit>> map = new HashMap<>();
+    static {
+        map.put("tomato", Tomato::new);
+        map.put("orange", Orange::new);
+    }
+    // Calling the Function's apply() method with an Integer weight parameter will provide the requested Fruit
+    public static Tomato giveMeFruit(String fruit, Integer weight) {
+        return (Tomato) map.get(fruit.toLowerCase()).apply(weight);
     }
 }
