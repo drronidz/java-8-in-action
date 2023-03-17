@@ -17,6 +17,7 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.function.Consumer;
 import java.util.function.Function;
+import java.util.function.IntPredicate;
 import java.util.function.Predicate;
 
 public class FilteringTomato {
@@ -68,6 +69,21 @@ public class FilteringTomato {
 
         /* Working with a Function */
         List<Integer> integers = map(Arrays.asList("lambdas","in","action"), (String s) -> s.length());
+
+        /* Primitive specializations */
+
+        // Autoboxing mechanism
+        List<Integer> integerList = new ArrayList<>();
+        for (int i=300; i<400; i++) {
+            integerList.add(i);
+        }
+
+        // No boxing (avoiding performance cost 'true')
+        IntPredicate evenNumbers = (int i) -> i % 2 == 0;
+        evenNumbers.test(1000);
+
+        // With boxing (false)
+        Predicate<Integer> oddNumbers = (Integer i) -> i % 2 == 1;
     }
 
     /** Where and how to use lambdas **/
