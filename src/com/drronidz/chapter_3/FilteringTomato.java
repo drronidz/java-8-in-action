@@ -84,6 +84,12 @@ public class FilteringTomato {
 
         // With boxing (false)
         Predicate<Integer> oddNumbers = (Integer i) -> i % 2 == 1;
+
+        /** Method references **/
+        // before using method reference :
+        inventory.sort((Tomato tomatoOne, Tomato tomatoTwo) -> tomatoOne.getWeight().compareTo(tomatoTwo.getWeight()));
+        // after using method reference :
+        inventory.sort(Comparator.comparing(Tomato::getWeight));
     }
 
     /** Where and how to use lambdas **/
