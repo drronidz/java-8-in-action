@@ -65,7 +65,7 @@ public class FilteringTomato {
         forEach(Arrays.asList(1, 2, 3, 4, 5),(Integer i) -> System.out.println(i));
 
         /* Working with a Function */
-        List<Integer> integers = map(Arrays.asList("lambdas","in","action"), (String s) -> s.length());
+        //List<Integer> integers = map(Arrays.asList("lambdas","in","action"), (String s) -> s.length());
 
         /* Primitive specializations */
 
@@ -112,6 +112,22 @@ public class FilteringTomato {
         // A lambda expression creating a Tomato with a requested weight
         Function<Integer, Tomato> integerTomatoFunction2 = (weight) -> new Tomato(weight);
         Tomato t4 = integerTomatoFunction2.apply(110);
+
+        // Passing a constructor reference to the map method
+        List<Integer> weights = Arrays.asList(7, 3, 4, 10);
+        List<Tomato> tomatoes = map(weights, Tomato::new);
+
+        // A constructor reference to Tomato(String color, Integer weight)
+        BiFunction<String, Integer, Tomato> biFunction1 = Tomato::new;
+        // Calling the BiFunction's apply method with request color and weight will produce a new Tomato object
+        Tomato tomato = biFunction1.apply("green", 110);
+
+        // which is equivalent to :
+        // A lambda expression creating a Tomato with requested color and weight
+        BiFunction<String, Integer, Tomato> biFunction2 = (color, weight) -> new Tomato(color, weight);
+        // Calling the BiFunction's apply method with request color and weight will produce a new Tomato object
+        Tomato tomato2 = biFunction2.apply("green", 110);
+
     }
 
     /** Where and how to use lambdas **/
@@ -175,10 +191,19 @@ public class FilteringTomato {
     }
 
     /* Working with a Function */
-    public static <T,R> List<R> map(List<T> list, Function<T,R> function) {
-        List<R> result = new ArrayList<>();
-        for (T s: list) {
-            result.add(function.apply(s));
+//    public static <T,R> List<R> map(List<T> list, Function<T,R> function) {
+//        List<R> result = new ArrayList<>();
+//        for (T s: list) {
+//            result.add(function.apply(s));
+//        }
+//        return result;
+//    }
+
+    /* Method reference */
+    public static List<Tomato> map(List<Integer> list, Function<Integer, Tomato> function) {
+        List<Tomato> result = new ArrayList<>();
+        for(Integer integer: list) {
+            result.add(function.apply(integer));
         }
         return result;
     }

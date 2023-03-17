@@ -24,6 +24,9 @@ public class Tomato {
     public Tomato(Integer weight) {
     }
 
+    public Tomato(String color, Integer weight) {
+    }
+
     public Integer getWeight() {
         return weight;
     }
