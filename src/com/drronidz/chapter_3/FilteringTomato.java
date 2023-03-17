@@ -16,6 +16,7 @@ import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
 import java.util.function.Consumer;
+import java.util.function.Function;
 import java.util.function.Predicate;
 
 public class FilteringTomato {
@@ -64,6 +65,9 @@ public class FilteringTomato {
 
         /*Working with Consumer*/
         forEach(Arrays.asList(1, 2, 3, 4, 5),(Integer i) -> System.out.println(i));
+
+        /* Working with a Function */
+        List<Integer> integers = map(Arrays.asList("lambdas","in","action"), (String s) -> s.length());
     }
 
     /** Where and how to use lambdas **/
@@ -124,5 +128,14 @@ public class FilteringTomato {
         for (T i: list) {
             consumer.accept(i);
         }
+    }
+
+    /* Working with a Function */
+    public static <T,R> List<R> map(List<T> list, Function<T,R> function) {
+        List<R> result = new ArrayList<>();
+        for (T s: list) {
+            result.add(function.apply(s));
+        }
+        return result;
     }
 }
