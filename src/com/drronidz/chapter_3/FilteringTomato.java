@@ -15,10 +15,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
-import java.util.function.Consumer;
-import java.util.function.Function;
-import java.util.function.IntPredicate;
-import java.util.function.Predicate;
+import java.util.function.*;
 
 public class FilteringTomato {
     public static void main(String[] args) throws IOException {
@@ -90,6 +87,13 @@ public class FilteringTomato {
         inventory.sort((Tomato tomatoOne, Tomato tomatoTwo) -> tomatoOne.getWeight().compareTo(tomatoTwo.getWeight()));
         // after using method reference :
         inventory.sort(Comparator.comparing(Tomato::getWeight));
+
+        // Quiz
+        Function<String, Integer> stringToInteger = (String s) -> Integer.parseInt(s);
+        Function<String, Integer> stringToIntegerMethodReference = Integer::parseInt;
+
+        BiPredicate<List<String>, String> contains = (list, element) -> list.contains(element);
+        BiPredicate<List<String>, String> containsMethodReference = List::contains;
     }
 
     /** Where and how to use lambdas **/
