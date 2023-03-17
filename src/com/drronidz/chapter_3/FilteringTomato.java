@@ -94,6 +94,17 @@ public class FilteringTomato {
 
         BiPredicate<List<String>, String> contains = (list, element) -> list.contains(element);
         BiPredicate<List<String>, String> containsMethodReference = List::contains;
+
+        /* Constructor references */
+
+        // A constructor reference to the default Tomato() constructor
+        Supplier<Tomato> tomatoSupplierOne = Tomato::new;
+        Tomato tomatoOne = tomatoSupplierOne.get();
+
+        // A lambda expression creating a Tomato with the default Tomato() constructor
+        Supplier<Tomato> tomatoSupplierTwo = () -> new Tomato();
+        Tomato tomatoTwo = tomatoSupplierTwo.get();
+
     }
 
     /** Where and how to use lambdas **/

@@ -17,6 +17,10 @@ public class Tomato {
         this.color = color;
     }
 
+    public Tomato() {
+
+    }
+
     public Integer getWeight() {
         return weight;
     }
