@@ -15,6 +15,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
+import java.util.function.Consumer;
 import java.util.function.Predicate;
 
 public class FilteringTomato {
@@ -62,6 +63,7 @@ public class FilteringTomato {
         List<Tomato> lightTomatoes = filter(inventory, lightTomatoesPredicate);
 
         /*Working with Consumer*/
+        forEach(Arrays.asList(1, 2, 3, 4, 5),(Integer i) -> System.out.println(i));
     }
 
     /** Where and how to use lambdas **/
@@ -105,7 +107,8 @@ public class FilteringTomato {
         }
     }
 
-    /* Working with a Predicate*/
+
+    /* Working with a Predicate */
     public static <T> List<T> filter(List<T> list, Predicate<T> predicate) {
         List<T> results = new ArrayList<>();
         for(T s: list) {
@@ -114,5 +117,12 @@ public class FilteringTomato {
             }
         }
         return results;
+    }
+
+    /* Working with a Consumer */
+    public static <T> void forEach(List<T> list, Consumer<T> consumer) {
+        for (T i: list) {
+            consumer.accept(i);
+        }
     }
 }
