@@ -99,12 +99,19 @@ public class FilteringTomato {
 
         // A constructor reference to the default Tomato() constructor
         Supplier<Tomato> tomatoSupplierOne = Tomato::new;
-        Tomato tomatoOne = tomatoSupplierOne.get();
+        Tomato t1 = tomatoSupplierOne.get();
 
         // A lambda expression creating a Tomato with the default Tomato() constructor
         Supplier<Tomato> tomatoSupplierTwo = () -> new Tomato();
-        Tomato tomatoTwo = tomatoSupplierTwo.get();
+        Tomato t2 = tomatoSupplierTwo.get();
 
+        // A constructor reference to a constructor with a signature Tomato(Integer weight)
+        Function<Integer, Tomato> integerTomatoFunction1 = Tomato::new;
+        Tomato t3 = integerTomatoFunction1.apply(110);
+
+        // A lambda expression creating a Tomato with a requested weight
+        Function<Integer, Tomato> integerTomatoFunction2 = (weight) -> new Tomato(weight);
+        Tomato t4 = integerTomatoFunction2.apply(110);
     }
 
     /** Where and how to use lambdas **/
