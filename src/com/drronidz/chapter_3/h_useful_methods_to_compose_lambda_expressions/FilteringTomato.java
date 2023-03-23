@@ -12,6 +12,7 @@ import com.drronidz.chapter_3.Tomato;
 import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
+import java.util.function.Predicate;
 
 import static java.util.Comparator.comparing;
 
@@ -35,6 +36,11 @@ public class FilteringTomato {
 
         // Chaining comparators (Sorting by decreasing weight & further by color when two tomatoes have same weight)
         inventory.sort(comparing(Tomato::getWeight).reversed().thenComparing(Tomato::getColor));
+
+        // Composing Predicates
+        // Produces the negation of existing Predicate object redTomato
+        Predicate<Tomato> redTomato = tomato -> tomato.getColor().equals("red");
+        Predicate<Tomato> notRedTomato = redTomato.negate();
 
     }
 }
