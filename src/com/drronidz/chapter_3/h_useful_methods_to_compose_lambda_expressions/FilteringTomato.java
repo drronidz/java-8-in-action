@@ -39,13 +39,18 @@ public class FilteringTomato {
 
         // Composing Predicates
         // Produces the negation of existing Predicate object redTomato
-        Predicate<Tomato> redTomato = tomato -> tomato.getColor().equals("red");
+        Predicate<Tomato> redTomato = tomato -> "red".equals(tomato.getColor());
         Predicate<Tomato> notRedTomato = redTomato.negate();
 
         // Chaining Predicates
         // Chaining tWO predicates (redTomato and heavyTomato to produce redAndHeavyTomato Predicate object)
         Predicate<Tomato> heavyTomato = tomato -> tomato.getWeight() > 150;
         Predicate<Tomato> redAndHeavyTomato = redTomato.and(heavyTomato);
+
+        // Chaining Predicate's methods to construct more complex Predicate object
+        Predicate<Tomato> greenTomato = tomato -> "green".equals(tomato.getColor());
+        Predicate<Tomato> redAndHeavyTomatoOrGreen =
+                redTomato.and(heavyTomato).or(greenTomato);
 
     }
 }
