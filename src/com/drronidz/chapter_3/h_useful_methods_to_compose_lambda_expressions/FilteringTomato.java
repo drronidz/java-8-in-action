@@ -12,6 +12,7 @@ import com.drronidz.chapter_3.Tomato;
 import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
+import java.util.function.Function;
 import java.util.function.Predicate;
 
 import static java.util.Comparator.comparing;
@@ -52,5 +53,27 @@ public class FilteringTomato {
         Predicate<Tomato> redAndHeavyTomatoOrGreen =
                 redTomato.and(heavyTomato).or(greenTomato);
 
+        // Composing Functions
+        Function<String, String> addHeader = Letter::addHeader;
+        Function<String, String> transformationPipeline =
+                addHeader
+                        .andThen(Letter::checkSpelling)
+                        .andThen(Letter::addFooter);
+    }
+
+}
+// Composing Functions
+class Letter {
+
+    public static String addHeader(String text) {
+        return "From Raoul, Mario & Alan:" + text;
+    }
+
+    public static String addFooter(String text) {
+        return text + "Kind regards";
+    }
+
+    public static String checkSpelling(String text) {
+        return text.replaceAll("labda", "lambda");
     }
 }
