@@ -8,6 +8,8 @@ DATE : 3/11/2023 3:57 PM
 */
 
 
+import com.vdurmont.emoji.EmojiParser;
+
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
@@ -15,6 +17,7 @@ import java.util.*;
 import java.util.function.*;
 
 public class FilteringTomato {
+
     public static void main(String[] args) throws IOException {
 
         List<Tomato> inventory = Arrays.asList(
@@ -50,8 +53,8 @@ public class FilteringTomato {
 
         /** Putting lambdas into practice: The execute around pattern **/
         /* Step 4: Pass lambdas */
-        String oneLine = processFile((BufferedReader br) -> br.readLine());
-        String twoLines = processFile((BufferedReader br) -> br.readLine() + br.readLine());
+        //String oneLine = processFile((BufferedReader br) -> br.readLine());
+        //String twoLines = processFile((BufferedReader br) -> br.readLine() + br.readLine());
 
         /** Using Functional Interfaces **/
         /* Working with Predicate */
@@ -124,6 +127,10 @@ public class FilteringTomato {
         BiFunction<String, Integer, Tomato> biFunction2 = (color, weight) -> new Tomato(color, weight);
         // Calling the BiFunction's apply method with request color and weight will produce a new Tomato object
         Tomato tomato2 = biFunction2.apply("green", 110);
+
+
+        System.out.println(EmojiParser.parseToUnicode(":apple: Ready"));
+
 
     }
 
@@ -205,6 +212,10 @@ public class FilteringTomato {
         }
         return result;
     }
+    static {
+        Tomato tomato = new Tomato();
+        System.out.println(tomato.getWeight());
+    }
 
     // Constructor reference
     static Map<String, Function<Integer, Fruit>> map = new HashMap<>();
@@ -216,4 +227,6 @@ public class FilteringTomato {
     public static Tomato giveMeFruit(String fruit, Integer weight) {
         return (Tomato) map.get(fruit.toLowerCase()).apply(weight);
     }
+
+    /** Putting lambdas and method references into practice! **/
 }
