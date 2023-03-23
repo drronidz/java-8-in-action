@@ -54,11 +54,19 @@ public class FilteringTomato {
                 redTomato.and(heavyTomato).or(greenTomato);
 
         // Composing Functions
+        // Pipeline 1: (adding header, then checks spelling and adding footer)
         Function<String, String> addHeader = Letter::addHeader;
-        Function<String, String> transformationPipeline =
+        Function<String, String> checkSpelling = Letter::checkSpelling;
+        Function<String, String> addFooter = Letter::addFooter;
+        Function<String, String> transformationPipelineOne =
                 addHeader
-                        .andThen(Letter::checkSpelling)
-                        .andThen(Letter::addFooter);
+                        .andThen(checkSpelling)
+                        .andThen(addFooter);
+
+        // Pipeline 2: (adding header, and adding footer without checks spelling)
+        Function<String, String> transformationPipelineTwo =
+                addHeader
+                        .andThen(addFooter);
     }
 
 }
