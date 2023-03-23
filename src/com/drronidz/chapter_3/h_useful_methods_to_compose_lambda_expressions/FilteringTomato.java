@@ -42,5 +42,10 @@ public class FilteringTomato {
         Predicate<Tomato> redTomato = tomato -> tomato.getColor().equals("red");
         Predicate<Tomato> notRedTomato = redTomato.negate();
 
+        // Chaining Predicates
+        // Chaining tWO predicates (redTomato and heavyTomato to produce redAndHeavyTomato Predicate object)
+        Predicate<Tomato> heavyTomato = tomato -> tomato.getWeight() > 150;
+        Predicate<Tomato> redAndHeavyTomato = redTomato.and(heavyTomato);
+
     }
 }
