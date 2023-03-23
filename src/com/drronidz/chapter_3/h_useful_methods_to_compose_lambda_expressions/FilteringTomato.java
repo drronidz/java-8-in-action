@@ -30,7 +30,11 @@ public class FilteringTomato {
         // Composing Comparators
         Comparator<Tomato> comparator = comparing(Tomato::getWeight);
 
-        // Reversed order
+        // Reversed order (Storing by decreasing weight)
         inventory.sort(comparing(Tomato::getWeight).reversed());
+
+        // Chaining comparators (Sorting by decreasing weight & further by color when two tomatoes have same weight)
+        inventory.sort(comparing(Tomato::getWeight).reversed().thenComparing(Tomato::getColor));
+
     }
 }
