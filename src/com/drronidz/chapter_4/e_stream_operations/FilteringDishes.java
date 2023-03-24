@@ -1,4 +1,4 @@
-package com.drronidz.chapter_4.c_streams_vs_collections;
+package com.drronidz.chapter_4.e_stream_operations;
 
 /*
 PROJECT NAME : java-8-in-action
@@ -13,8 +13,6 @@ import java.util.*;
 import java.util.stream.Stream;
 
 import static java.util.Arrays.asList;
-import static java.util.Comparator.comparing;
-import static java.util.stream.Collectors.groupingBy;
 import static java.util.stream.Collectors.toList;
 
 public class FilteringDishes {
@@ -46,50 +44,34 @@ public class FilteringDishes {
     }
 
     public static void main(String[] args) {
-        /* Getting started with streams */
-        // Get a stream from menu (the list of dishes)
-        // Create a pipeline of operations: first filter, high-calorie dishes
-        // Get the names of the dishes
-        // Select only the first three
-        // Store the results in another List
-        // The result is [pork, beef, chicken]
-        List<String> threeHighCaloricDishNames =
-                menu.stream()
+        /* Stream operations */
+        // 1/ Get a stream from the list of dishes
+        // 2/ intermediate operation (filter)
+        // 3/ intermediate operation (map)
+        // 4/ intermediate operation (limit)
+        // 5/ Convert the Stream into a List
+        List<String> namesThree = menu.stream()
                 .filter(dish -> dish.getCalories() > 300)
                 .map(Dish::getName)
                 .limit(3)
                 .collect(toList());
 
-        /* Streams vs Collections */
-        // Traversable only once
-        // Print each word in the title
-        // throw an exception indicating the stream has been consumed
-        List<String> title = Arrays.asList("Java 8", "in", "Action");
-        Stream<String> stream  = title.stream();
-        stream.forEach(System.out::println);
-        stream.forEach(System.out::println);
-
-        // External iteration
-        // Collections: external iteration with a for-each loop
-        List<String> names = new ArrayList<>();
-        for (Dish dish: menu) {
-            names.add(dish.getName());
-        }
-
-        // Collections: external iteration with an iterator behind the scenes
-        List<String> namesOne = new ArrayList<>();
-        Iterator<Dish> iterator = menu.iterator();
-        while(iterator.hasNext()) {
-            Dish dish = iterator.next();
-            namesOne.add(dish.getName());
-        }
-
-        // Streams: internal iteration
-        // Parameterize method to extract the name of a dish
-        // Start executing the pipeline of operations, no iteration!
-        List<String> namesTwo = menu
-                .stream()
-                .map(Dish::getName)
+        // Intermediate operations
+        // Printing the dishes as they're filtered
+        // Printing the dishes as you extract their names
+        List<String> namesFour = menu.stream()
+                .filter(dish -> {
+                    System.out.println("Filtering" + dish.getName());
+                    return dish.getCalories() > 300;
+                })
+                .map(dish -> {
+                    System.out.println("Mapping" + dish.getName());
+                    return dish.getName();
+                })
+                .limit(3)
                 .collect(toList());
+
+        // Terminal operations
+        menu.stream().forEach(System.out::println);
     }
 }
