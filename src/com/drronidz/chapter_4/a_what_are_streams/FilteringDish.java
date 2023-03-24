@@ -10,8 +10,10 @@ DATE : 3/24/2023 2:16 PM
 import com.drronidz.chapter_4.Dish;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 import static java.util.Arrays.asList;
+import static java.util.Comparator.comparing;
 
 public class FilteringDish {
     public static final List<Dish> menu = asList(
@@ -58,9 +60,20 @@ public class FilteringDish {
         });
 
         // Process the sorted list to select the names of dishes
-        List<String> lowCaloricDishesName = new ArrayList<>();
+        List<String> lowCaloricDishesNameOld = new ArrayList<>();
         for (Dish dish: lowCaloricDishes) {
-            lowCaloricDishesName.add(dish.getName());
+            lowCaloricDishesNameOld.add(dish.getName());
         }
+
+        // After Java 8
+        // Select dishes that are below 400 calories
+        // Sort them by calories
+        // Extract the names of these dishes
+        // Store all the names in a List
+        List<String> lowCaloricDishesNameNew = menu.stream()
+                .filter(dish -> dish.getCalories() <400)
+                .sorted(comparing(Dish::getCalories))
+                .map(Dish::getName)
+                .collect(Collectors.toList());
     }
 }
