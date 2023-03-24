@@ -18,6 +18,7 @@ import static java.util.stream.Collectors.groupingBy;
 import static java.util.stream.Collectors.toList;
 
 public class FilteringDishes {
+
     public static final List<Dish> menu = asList(
             new Dish("pork", false, 800, Dish.Type.MEAT),
             new Dish("beef", false, 700, Dish.Type.MEAT),
@@ -89,5 +90,7 @@ public class FilteringDishes {
         // -> Stream API does it !
         Map<Dish.Type, List<Dish>> dishesByType =
                 menu.stream().collect(groupingBy(Dish::getType));
+
+
     }
 }
