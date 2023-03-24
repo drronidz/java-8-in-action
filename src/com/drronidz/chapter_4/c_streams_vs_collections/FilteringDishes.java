@@ -75,5 +75,13 @@ public class FilteringDishes {
         for (Dish dish: menu) {
             names.add(dish.getName());
         }
+
+        // Collections: external iteration with an iterator behind the scenes
+        List<String> namesOne = new ArrayList<>();
+        Iterator<Dish> iterator = menu.iterator();
+        while(iterator.hasNext()) {
+            Dish dish = iterator.next();
+            namesOne.add(dish.getName());
+        }
     }
 }
