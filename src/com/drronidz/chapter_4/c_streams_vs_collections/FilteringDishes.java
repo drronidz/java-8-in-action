@@ -91,5 +91,17 @@ public class FilteringDishes {
                 .stream()
                 .map(Dish::getName)
                 .collect(toList());
+
+        /* Stream operations */
+        // 1/ Get a stream from the list of dishes
+        // 2/ intermediate operation (filter)
+        // 3/ intermediate operation (map)
+        // 4/ intermediate operation (limit)
+        // 5/ Convert the Stream into a List
+        List<String> namesThree = menu.stream()
+                .filter(dish -> dish.getCalories() > 300)
+                .map(Dish::getName)
+                .limit(3)
+                .collect(toList());
     }
 }
