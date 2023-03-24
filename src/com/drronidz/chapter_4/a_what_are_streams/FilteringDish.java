@@ -14,6 +14,7 @@ import java.util.stream.Collectors;
 
 import static java.util.Arrays.asList;
 import static java.util.Comparator.comparing;
+import static java.util.stream.Collectors.groupingBy;
 import static java.util.stream.Collectors.toList;
 
 public class FilteringDish {
@@ -83,5 +84,9 @@ public class FilteringDish {
                 .sorted(comparing(Dish::getCalories))
                 .map(Dish::getName)
                 .collect(toList());
+
+        // We don't worry about parallelize certain data processing tasks (threads and locks) -> Stream API does it !
+        Map<Dish.Type, List<Dish>> dishesByType =
+                menu.stream().collect(groupingBy(Dish::getType));
     }
 }
