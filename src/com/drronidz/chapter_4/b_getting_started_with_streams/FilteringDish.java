@@ -10,6 +10,7 @@ DATE : 3/24/2023 2:16 PM
 import com.drronidz.chapter_4.Dish;
 
 import java.util.*;
+import java.util.stream.Stream;
 
 import static java.util.Arrays.asList;
 import static java.util.Comparator.comparing;
@@ -57,5 +58,12 @@ public class FilteringDish {
                 .map(Dish::getName)
                 .limit(3)
                 .collect(toList());
+
+        /* Streams vs Collections */
+        // throw an exception indicating the stream has been consumed (Traversable only once)
+        List<String> title = Arrays.asList("Java8", "in", "Action");
+        Stream<String> stringStream = title.stream();
+        stringStream.forEach(System.out::println);
+        stringStream.forEach(System.out::println);
     }
 }
