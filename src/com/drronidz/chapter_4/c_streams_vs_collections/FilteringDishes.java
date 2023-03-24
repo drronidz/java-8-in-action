@@ -68,5 +68,12 @@ public class FilteringDishes {
         Stream<String> stream  = title.stream();
         stream.forEach(System.out::println);
         stream.forEach(System.out::println);
+
+        // External iteration
+        // Collections: external iteration with a for-each loop
+        List<String> names = new ArrayList<>();
+        for (Dish dish: menu) {
+            names.add(dish.getName());
+        }
     }
 }
