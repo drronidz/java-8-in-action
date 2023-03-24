@@ -103,5 +103,22 @@ public class FilteringDishes {
                 .map(Dish::getName)
                 .limit(3)
                 .collect(toList());
+
+        // Intermediate operations
+        // Printing the dishes as they're filtered
+        // Printing the dishes as you extract their names
+        List<String> namesFour = menu.stream()
+                .filter(dish -> {
+                    System.out.println("Filtering" + dish.getName());
+                    return dish.getCalories() > 300;
+                })
+                .map(dish -> {
+                    System.out.println("Mapping" + dish.getName());
+                    return dish.getName();
+                })
+                .limit(3)
+                .collect(toList());
+
+        // Terminal operations
     }
 }
