@@ -120,5 +120,6 @@ public class FilteringDishes {
                 .collect(toList());
 
         // Terminal operations
+        menu.stream().forEach(System.out::println);
     }
 }
