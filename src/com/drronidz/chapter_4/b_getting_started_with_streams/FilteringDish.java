@@ -73,5 +73,13 @@ public class FilteringDish {
             // Extract he name and add it to an accumulator
             names.add(dish.getName());
         }
+
+        // External iteration using an iterator behind the scenes
+        List<String> namesOne = new ArrayList<>();
+        Iterator<Dish> iterator = menu.iterator();
+        while(iterator.hasNext()) {
+            Dish dish = iterator.next();
+            names.add(dish.getName());
+        }
     }
 }

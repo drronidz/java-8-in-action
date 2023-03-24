@@ -85,7 +85,8 @@ public class FilteringDish {
                 .map(Dish::getName)
                 .collect(toList());
 
-        // We don't worry about parallelize certain data processing tasks (threads and locks) -> Stream API does it !
+        // We don't worry about parallelize certain data processing tasks (threads and locks)
+        // -> Stream API does it !
         Map<Dish.Type, List<Dish>> dishesByType =
                 menu.stream().collect(groupingBy(Dish::getType));
     }
