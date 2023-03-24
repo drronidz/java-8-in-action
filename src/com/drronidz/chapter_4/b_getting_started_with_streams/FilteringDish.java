@@ -65,5 +65,13 @@ public class FilteringDish {
         Stream<String> stringStream = title.stream();
         stringStream.forEach(System.out::println);
         stringStream.forEach(System.out::println);
+
+        // External vs internal iteration
+        // Explicitly iterate the list of menu sequentially
+        List<String> names = new ArrayList<>();
+        for (Dish dish: menu) {
+            // Extract he name and add it to an accumulator
+            names.add(dish.getName());
+        }
     }
 }
