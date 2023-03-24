@@ -57,6 +57,10 @@ public class FilteringDish {
             }
         });
 
-
+        // Process the sorted list to select the names of dishes
+        List<String> lowCaloricDishesName = new ArrayList<>();
+        for (Dish dish: lowCaloricDishes) {
+            lowCaloricDishesName.add(dish.getName());
+        }
     }
 }
