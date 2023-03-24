@@ -14,6 +14,7 @@ import java.util.stream.Collectors;
 
 import static java.util.Arrays.asList;
 import static java.util.Comparator.comparing;
+import static java.util.stream.Collectors.toList;
 
 public class FilteringDish {
     public static final List<Dish> menu = asList(
@@ -74,6 +75,13 @@ public class FilteringDish {
                 .filter(dish -> dish.getCalories() <400)
                 .sorted(comparing(Dish::getCalories))
                 .map(Dish::getName)
-                .collect(Collectors.toList());
+                .collect(toList());
+
+        // Exploit a multicore architecture & execute this code in parallel
+        List<String> lowCaloricDishesName = menu.parallelStream()
+                .filter(dish -> dish.getCalories() < 400)
+                .sorted(comparing(Dish::getCalories))
+                .map(Dish::getName)
+                .collect(toList());
     }
 }
