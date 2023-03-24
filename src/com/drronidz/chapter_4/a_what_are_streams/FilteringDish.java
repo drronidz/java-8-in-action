@@ -9,10 +9,7 @@ DATE : 3/24/2023 2:16 PM
 
 import com.drronidz.chapter_4.Dish;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 import static java.util.Arrays.asList;
 
@@ -51,5 +48,15 @@ public class FilteringDish {
                 lowCaloricDishes.add(dish);
             }
         }
+
+        // Sort the dishes with an anonymous class
+        Collections.sort(lowCaloricDishes, new Comparator<Dish>() {
+            @Override
+            public int compare(Dish o1, Dish o2) {
+                return Integer.compare(o1.getCalories(), o2.getCalories());
+            }
+        });
+
+
     }
 }
