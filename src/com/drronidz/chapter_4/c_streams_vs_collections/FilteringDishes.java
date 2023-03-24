@@ -83,5 +83,13 @@ public class FilteringDishes {
             Dish dish = iterator.next();
             namesOne.add(dish.getName());
         }
+
+        // Streams: internal iteration
+        // Parameterize method to extract the name of a dish
+        // Start executing the pipeline of operations, no iteration!
+        List<String> namesTwo = menu
+                .stream()
+                .map(Dish::getName)
+                .collect(toList());
     }
 }
