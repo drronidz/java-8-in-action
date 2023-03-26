@@ -44,5 +44,13 @@ public class FilteringDishes {
                 .filter(i -> i % 2 == 0)
                 .distinct()
                 .forEach(System.out::println);
+
+        // Truncating a stream
+        List<Dish> dishes = menu
+                .stream()
+                .filter( dish -> dish.getCalories() > 300)
+                .limit(3)
+                .collect(toList());
+
     }
 }
