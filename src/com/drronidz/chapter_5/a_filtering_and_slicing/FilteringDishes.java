@@ -9,6 +9,7 @@ DATE : 3/26/2023 7:44 PM
 
 import com.drronidz.chapter_5.Dish;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -36,5 +37,12 @@ public class FilteringDishes {
                 .stream()
                 .filter(Dish::isVegetarian)
                 .collect(toList());
+
+        // Filtering unique elements
+        List<Integer> numbers = Arrays.asList(1, 2, 1, 3, 3, 2, 4);
+        numbers.stream()
+                .filter(i -> i % 2 == 0)
+                .distinct()
+                .forEach(System.out::println);
     }
 }
