@@ -37,6 +37,12 @@ public class FilteringDishes {
             System.out.println("The menu is (somewhat) vegetarian friendly");
         }
 
-
+        // Checking to see if a predicate matches all elements
+        boolean isHealthy;
+        isHealthy = menu.stream()
+                .allMatch(dish -> dish.getCalories() < 1000);
+        // noneMatch
+        isHealthy = menu.stream()
+                .noneMatch(dish -> dish.getCalories() >= 1000);
     }
 }
