@@ -11,6 +11,7 @@ import com.drronidz.chapter_5.Dish;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Stream;
 
 import static java.util.Arrays.asList;
 import static java.util.stream.Collectors.toList;
@@ -50,7 +51,17 @@ public class FilteringDishes {
                 .distinct()
                 .collect(toList());
 
+        // Attempt using map and Arrays.stream
+        String [] arrayOfWords = {"Goodbye", "World"};
+        Stream<String> streamOfWords = Arrays.stream(arrayOfWords);
 
-
+        // Convert each word into an array of its individual letters
+        // Makes each array into a separate stream
+        // Type of stream is Stream<Stream <String>>
+        words.stream()
+                .map(word -> word.split(""))
+                .map(Arrays::stream)
+                .distinct()
+                .collect(toList());
     }
 }
