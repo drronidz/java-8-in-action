@@ -63,5 +63,15 @@ public class FilteringDishes {
                 .map(Arrays::stream)
                 .distinct()
                 .collect(toList());
+
+        // Using flatMap
+        // Converts each word into an array of its individual letters
+        // Flattens each generated stream into a single stream
+        List<String> uniqueCharacters =
+                words.stream()
+                .map(word -> word.split(""))
+                .flatMap(Arrays::stream)
+                .distinct()
+                .collect(toList());
     }
 }
