@@ -32,8 +32,14 @@ public class FilteringDishes {
     public static void main(String[] args) {
         /* Mapping (for example, in SQL you can select a particular column from a table)*/
         // Applying a function to each element of a stream
+        // extracting the names of the dishes in the stream
         List<String> dishNames = menu.stream()
                 .map(Dish::getName)
+                .collect(toList());
+        // return a list of the number of characters for each word from a list
+        List<String> words = Arrays.asList("Java8","Lambdas", "In", "Action");
+        List<Integer> wordsLength = words.stream()
+                .map(String::length)
                 .collect(toList());
     }
 }
