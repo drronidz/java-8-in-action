@@ -11,6 +11,7 @@ import com.drronidz.chapter_5.Dish;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Stream;
 
 import static java.util.Arrays.asList;
@@ -44,5 +45,11 @@ public class FilteringDishes {
         // noneMatch
         isHealthy = menu.stream()
                 .noneMatch(dish -> dish.getCalories() >= 1000);
+
+        // Finding an element
+        Optional<Dish> dish =
+                menu.stream()
+                .filter(Dish::isVegetarian)
+                .findAny();
     }
 }
