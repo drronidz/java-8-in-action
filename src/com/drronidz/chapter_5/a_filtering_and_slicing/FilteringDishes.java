@@ -59,5 +59,12 @@ public class FilteringDishes {
                 .skip(2)
                 .collect(toList());
 
+        // Quiz: Filtering (How would you use streams to filter the first two meat dishes)
+        List<Dish> dishesQuiz  =
+                menu.stream()
+                .filter(dish -> dish.getType() == Dish.Type.MEAT)
+                .limit(2)
+                .collect(toList());
+
     }
 }
