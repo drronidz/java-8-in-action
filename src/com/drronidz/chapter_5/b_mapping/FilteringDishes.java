@@ -73,5 +73,12 @@ public class FilteringDishes {
                 .flatMap(Arrays::stream)
                 .distinct()
                 .collect(toList());
+
+        // Quiz (Mapping)
+        // From : [1, 2, 3, 4, 5] To -> [1, 4, 9, 16, 25]
+        List<Integer> numbers = Arrays.asList(1, 2, 3, 4, 5);
+        List<Integer> squares = numbers.stream()
+                .map(number -> number * number)
+                .collect(toList());
     }
 }
