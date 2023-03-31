@@ -36,10 +36,21 @@ public class FilteringDishes {
         List<String> dishNames = menu.stream()
                 .map(Dish::getName)
                 .collect(toList());
+
         // return a list of the number of characters for each word from a list
         List<String> words = Arrays.asList("Java8","Lambdas", "In", "Action");
         List<Integer> wordsLength = words.stream()
                 .map(String::length)
                 .collect(toList());
+
+        // Flattening streams (Type of stream is String[] !)
+        // Incorrect use of map to find unique characters from a list of words
+        words.stream()
+                .map(word -> word.split(""))
+                .distinct()
+                .collect(toList());
+
+
+
     }
 }
