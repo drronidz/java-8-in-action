@@ -51,5 +51,13 @@ public class FilteringDishes {
                 menu.stream()
                 .filter(Dish::isVegetarian)
                 .findAny();
+
+        // Optional in a nutshell
+        // Returns an Optional<Dish>
+        // If a value is contained, it's printed, otherwise nothing happens
+        menu.stream()
+                .filter(Dish::isVegetarian)
+                .findAny()
+                .ifPresent(d -> System.out.println(d.getName()));
     }
 }
