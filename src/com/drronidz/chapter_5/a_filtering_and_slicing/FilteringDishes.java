@@ -52,5 +52,12 @@ public class FilteringDishes {
                 .limit(3)
                 .collect(toList());
 
+        // Skipping elements in a stream
+        List<Dish> dishesOne = menu
+                .stream()
+                .filter(dish -> dish.getCalories() > 300)
+                .skip(2)
+                .collect(toList());
+
     }
 }
