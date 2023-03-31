@@ -8,6 +8,7 @@ DATE : 3/26/2023 7:44 PM
 */
 
 import com.drronidz.chapter_5.Dish;
+import org.omg.CORBA.portable.Delegate;
 
 import java.util.Arrays;
 import java.util.List;
@@ -59,5 +60,13 @@ public class FilteringDishes {
                 .filter(Dish::isVegetarian)
                 .findAny()
                 .ifPresent(d -> System.out.println(d.getName()));
+
+        // Finding the first
+        List<Integer> someNumbers = Arrays.asList(1, 2, 3, 4, 5);
+        Optional<Integer> firstSquareDivisibleByThree =
+                someNumbers.stream()
+                .map(x -> x * x)
+                .filter(x -> x % 3 == 0)
+                .findFirst();
     }
 }
