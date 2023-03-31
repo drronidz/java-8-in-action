@@ -74,11 +74,20 @@ public class FilteringDishes {
                 .distinct()
                 .collect(toList());
 
-        // Quiz (Mapping)
+        // Quiz 1 (Mapping)
         // From : [1, 2, 3, 4, 5] To -> [1, 4, 9, 16, 25]
         List<Integer> numbers = Arrays.asList(1, 2, 3, 4, 5);
         List<Integer> squares = numbers.stream()
                 .map(number -> number * number)
+                .collect(toList());
+
+        // Quiz 2 (Mapping)
+        // From : [1, 2, 3] && [4, 5] --> [(1,4),(1,5),(2,4),(2,5),(3,4),(3,5)]
+        List<Integer> numbersOne = Arrays.asList(1, 2, 3);
+        List<Integer> numbersTwo = Arrays.asList(4, 5);
+        List<int[]> pairs =
+                numbersOne.stream()
+                .flatMap(i -> numbersTwo.stream().map(j -> new int []{i,j}))
                 .collect(toList());
     }
 }
