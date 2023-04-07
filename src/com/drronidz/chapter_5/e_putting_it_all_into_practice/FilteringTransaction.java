@@ -48,6 +48,10 @@ public class FilteringTransaction {
                 .collect(Collectors.toList());
 
         /* Find all traders from Cambridge and sort them by name */
+        // Extract all traders from the transactions
+        // Select only the traders from Cambridge
+        // Make sure you don't have any duplicates
+        // Sort the resulting stream of traders by their names
         List<Trader> traders = transactions
                 .stream()
                 .map(Transaction::getTrader)
@@ -57,12 +61,25 @@ public class FilteringTransaction {
                 .collect(Collectors.toList());
 
         /* Returning a string of all traders' names sorted alphabetically */
+        // Extract all the names of the traders as a Stream of Strings
+        // Select only the unique names
+        // Sort the names alphabetically
+        // Combine each name one by one from a String that concatenates all the names
         String stringOfTraders = transactions
                 .stream()
                 .map(transaction -> transaction.getTrader().getName())
                 .distinct()
                 .sorted()
                 .reduce("", (n1, n2) -> n1 + n2);
+
+        String stringOfTradersTwo = transactions
+                .stream()
+                .map(transaction -> transaction.getTrader().getName())
+                .distinct()
+                .sorted()
+                .collect(Collectors.joining());
+
+        /*  */
 
     }
 }
