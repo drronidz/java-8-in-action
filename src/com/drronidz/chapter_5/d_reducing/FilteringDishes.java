@@ -37,6 +37,9 @@ public class FilteringDishes {
         for (int x: numbers) {
             defaultSum += x;
         }
+        // No initial value
+        Optional<Integer> NoInitialValueSum = numbers.stream().reduce((a,b) -> (a+b));
+
 
     }
 }
