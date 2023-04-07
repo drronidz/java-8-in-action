@@ -10,6 +10,7 @@ DATE : 4/7/2023 3:59 PM
 import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 public class FilteringTransaction {
@@ -85,5 +86,22 @@ public class FilteringTransaction {
                 .stream()
                 .anyMatch(transaction -> transaction.getTrader().getCity() == "Milan");
 
+        /* Printing all transactions's values from the traders living in Cambridge */
+        // Select the transactions where the traders live in Cambridge
+        // Extract the values of these traders
+        // Print each value
+        transactions
+                .stream()
+                .filter(transaction -> transaction.getTrader().getCity().equals("Cambridge"))
+                .map(Transaction::getValue)
+                .forEach(System.out::println);
+
+        /* Finding the highest value of all the transactions */
+        // Extract the value of each transaction
+        // Calculate the max of the resulting stream
+        Optional<Integer> max = transactions
+                .stream()
+                .map(Transaction::getValue)
+                .reduce(Integer::max);
     }
 }
