@@ -63,5 +63,25 @@ public class FilteringDishes {
 
         // Provide an explicit default maximum if there's no value
         int max = maxCalories.orElse(1);
+
+        /* Numeric ranges */
+        // Represents the range [1,100]
+        // A stream of even numbers from 1 to 100
+        // There are 50 even numbers from 1 to 100
+        IntStream evenNumbers = IntStream.rangeClosed(1, 100)
+                .filter(n -> n % 2 == 0);
+
+        /* Putting numerical streams into practice : Pythagorean triples */
+        // Filtering good combinations
+        stream.filter(b-> Math.sqrt((a*a + b*b) % 1 == 0));
+        // Generating tuples
+        stream.filter(b -> Math.sqrt( a * a + b * b ) % 1 == 0)
+                .map(b -> new int []{a,b, (int) Math.sqrt(a * a + b * b)});
+
+        // Generating b values
+        IntStream.rangeClosed(1, 100)
+                .filter(b -> Math.sqrt(a*a + b*b)%1 == 0)
+                .boxed()
+                .map(b -> new int []{a,b, (int) Math.sqrt(a * a + b * b )});
     }
 }
