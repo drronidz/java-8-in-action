@@ -10,6 +10,8 @@ DATE : 4/7/2023 6:34 PM
 import com.drronidz.chapter_5.Dish;
 
 import java.util.List;
+import java.util.stream.IntStream;
+import java.util.stream.Stream;
 
 import static java.util.Arrays.asList;
 
@@ -43,5 +45,13 @@ public class FilteringDishes {
                 .stream()
                 .mapToInt(Dish::getCalories)
                 .sum();
+
+        /* Converting back to a stream of objects */
+        // Converting a Stream to a numeric stream
+        // Converting the numeric stream to a Stream
+        IntStream intStream = menu
+                .stream()
+                .mapToInt(Dish::getCalories);
+        Stream<Integer> stream = intStream.boxed();
     }
 }
