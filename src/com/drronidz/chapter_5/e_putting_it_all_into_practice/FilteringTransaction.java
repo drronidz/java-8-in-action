@@ -28,7 +28,15 @@ public class FilteringTransaction {
                 new Transaction(mario, 2012, 700),
                 new Transaction(alan, 2012, 950)
         );
-
+        // Finding all transactions in the year 2011 and sort them by value (small to high)
+        // Passing a predicate to filter to select transaction in year 2011.
+        // Sort them by using the value of the transactions
+        // Collect all the elements of the resulting Stream into a List
+        List<Transaction> transactionList2011 = transactions
+                .stream()
+                .filter(transaction -> transaction.getYear() == 2011)
+                .sorted(Comparator.comparing(Transaction::getValue))
+                .collect(Collectors.toList());
 
     }
 }
