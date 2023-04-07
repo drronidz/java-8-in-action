@@ -57,6 +57,12 @@ public class FilteringTransaction {
                 .collect(Collectors.toList());
 
         /* Returning a string of all traders' names sorted alphabetically */
+        String stringOfTraders = transactions
+                .stream()
+                .map(transaction -> transaction.getTrader().getName())
+                .distinct()
+                .sorted()
+                .reduce("", (n1, n2) -> n1 + n2);
 
     }
 }
