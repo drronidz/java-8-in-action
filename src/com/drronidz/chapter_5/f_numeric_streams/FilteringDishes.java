@@ -36,6 +36,12 @@ public class FilteringDishes {
                 .reduce(Integer::sum)
                 .get();
 
-
+        // Mapping to a numeric stream
+        // Returns a Stream<Dish>
+        // Returns a IntStream
+        int caloriesTwo = menu
+                .stream()
+                .mapToInt(Dish::getCalories)
+                .sum();
     }
 }
