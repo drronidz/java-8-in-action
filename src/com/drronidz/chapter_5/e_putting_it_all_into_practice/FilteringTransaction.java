@@ -103,5 +103,22 @@ public class FilteringTransaction {
                 .stream()
                 .map(Transaction::getValue)
                 .reduce(Integer::max);
+
+        Optional<Integer> maxWithLambda = transactions
+                .stream()
+                .map(Transaction::getValue)
+                .reduce((x,y) -> x > y ? x : y);
+
+        /* Finding the smallest transaction of all the transactions */
+        // Find the smallest transaction by repeatedly comparing the values of each transaction
+
+        Optional<Transaction> smallestTransactionOne = transactions
+                .stream()
+                .reduce((tOne, tTwo) -> tOne.getValue() < tTwo.getValue() ? tOne : tTwo);
+
+        Optional<Transaction> smallestTransactionTwo = transactions
+                .stream()
+                .min(Comparator.comparing(Transaction::getValue));
+
     }
 }
