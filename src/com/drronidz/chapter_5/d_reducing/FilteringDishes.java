@@ -45,5 +45,13 @@ public class FilteringDishes {
         Optional<Integer> maxWithLambda = numbers.stream().reduce((a,b) -> (a > b ? a : b));
         Optional<Integer> min = numbers.stream().reduce(Integer::min);
         Optional<Integer> minWithLambda = numbers.stream().reduce((a,b) -> (a < b ? a : b));
+
+        // Quiz
+        // Counting number of dishes in a stream using map & reduce
+        Optional<Integer> numberOfDishes = menu
+                .stream()
+                .map(d -> 1)
+                .reduce((a,b) -> a+b);
+
     }
 }
