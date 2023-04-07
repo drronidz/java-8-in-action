@@ -79,7 +79,11 @@ public class FilteringTransaction {
                 .sorted()
                 .collect(Collectors.joining());
 
-        /*  */
+        /* Finding any traders based in Milan */
+        // Pass a predicate to anyMatch to check if there's a trader from Milan
+        boolean milanBased = transactions
+                .stream()
+                .anyMatch(transaction -> transaction.getTrader().getCity() == "Milan");
 
     }
 }
