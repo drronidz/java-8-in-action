@@ -46,5 +46,17 @@ public class FilteringTransaction {
                 .map(transaction -> transaction.getTrader().getCity())
                 .distinct()
                 .collect(Collectors.toList());
+
+        /* Find all traders from Cambridge and sort them by name */
+        List<Trader> traders = transactions
+                .stream()
+                .map(Transaction::getTrader)
+                .filter(trader -> trader.getCity() == "Cambridge")
+                .distinct()
+                .sorted(Comparator.comparing(Trader::getName))
+                .collect(Collectors.toList());
+
+        /* Returning a string of all traders' names sorted alphabetically */
+
     }
 }
