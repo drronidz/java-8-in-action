@@ -10,6 +10,7 @@ DATE : 4/7/2023 6:34 PM
 import com.drronidz.chapter_5.Dish;
 
 import java.util.List;
+import java.util.OptionalInt;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
@@ -53,5 +54,14 @@ public class FilteringDishes {
                 .stream()
                 .mapToInt(Dish::getCalories);
         Stream<Integer> stream = intStream.boxed();
+
+        /* Default values: OptionalInt */
+        OptionalInt maxCalories = menu
+                .stream()
+                .mapToInt(Dish::getCalories)
+                .max();
+
+        // Provide an explicit default maximum if there's no value
+        int max = maxCalories.orElse(1);
     }
 }
