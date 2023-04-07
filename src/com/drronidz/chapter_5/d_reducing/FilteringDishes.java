@@ -40,6 +40,10 @@ public class FilteringDishes {
         // No initial value
         Optional<Integer> NoInitialValueSum = numbers.stream().reduce((a,b) -> (a+b));
 
-
+        // Maximum & minimum
+        Optional<Integer> max = numbers.stream().reduce(Integer::max);
+        Optional<Integer> maxWithLambda = numbers.stream().reduce((a,b) -> (a > b ? a : b));
+        Optional<Integer> min = numbers.stream().reduce(Integer::min);
+        Optional<Integer> minWithLambda = numbers.stream().reduce((a,b) -> (a < b ? a : b));
     }
 }
