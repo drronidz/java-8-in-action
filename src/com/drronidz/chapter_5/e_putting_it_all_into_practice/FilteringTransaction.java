@@ -28,7 +28,7 @@ public class FilteringTransaction {
                 new Transaction(mario, 2012, 700),
                 new Transaction(alan, 2012, 950)
         );
-        // Finding all transactions in the year 2011 and sort them by value (small to high)
+        /* Finding all transactions in the year 2011 and sort them by value (small to high) */
         // Passing a predicate to filter to select transaction in year 2011.
         // Sort them by using the value of the transactions
         // Collect all the elements of the resulting Stream into a List
@@ -38,5 +38,13 @@ public class FilteringTransaction {
                 .sorted(Comparator.comparing(Transaction::getValue))
                 .collect(Collectors.toList());
 
+        /* Finding the unique cites where the traders work */
+        // Extract the city from each trader associated with the transaction
+        // Select only unique cities
+        List<String> cites = transactions
+                .stream()
+                .map(transaction -> transaction.getTrader().getCity())
+                .distinct()
+                .collect(Collectors.toList());
     }
 }
