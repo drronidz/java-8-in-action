@@ -8,6 +8,7 @@ DATE : 4/14/2023 5:50 PM
 */
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 import static java.util.stream.Collectors.groupingBy;
 
@@ -33,6 +34,9 @@ public class GroupingTransactions {
 
     public static void main(String[] args) {
         groupTransactionFunctional();
+
+        /* Collectors as advanced reductions */
+
     }
 
 
@@ -60,5 +64,11 @@ public class GroupingTransactions {
                 .stream()
                 .collect(groupingBy(Transaction::getCurrency));
         System.out.println(transactionsByCurrencies);
+    }
+
+    private static void collectingAdvancedReduction() {
+        List<Transaction> transactionsList = GroupingTransactions.transactions
+                .stream()
+                .collect(Collectors.toList());
     }
 }
