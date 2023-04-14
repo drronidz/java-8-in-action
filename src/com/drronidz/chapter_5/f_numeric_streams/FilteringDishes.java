@@ -72,16 +72,20 @@ public class FilteringDishes {
                 .filter(n -> n % 2 == 0);
 
         /* Putting numerical streams into practice : Pythagorean triples */
-        // Filtering good combinations
-        stream.filter(b-> Math.sqrt((a*a + b*b) % 1 == 0));
-        // Generating tuples
-        stream.filter(b -> Math.sqrt( a * a + b * b ) % 1 == 0)
-                .map(b -> new int []{a,b, (int) Math.sqrt(a * a + b * b)});
+        // Generating Values
+        Stream<int []> pythagoreanTriplesOne =
+                IntStream.rangeClosed(1, 100).boxed()
+                .flatMap(a -> IntStream.rangeClosed(a,100)
+                .filter(b -> Math.sqrt(a*a + b*b) % 1 == 0)
+                .mapToObj(b -> new int[]{a,b, (int) Math.sqrt(a * a + b * b)}));
+        pythagoreanTriplesOne.limit(5)
+                .forEach(t -> System.out.println(t[0] + "," + t[1] + "," + t[2]));
 
-        // Generating b values
-        IntStream.rangeClosed(1, 100)
-                .filter(b -> Math.sqrt(a*a + b*b)%1 == 0)
-                .boxed()
-                .map(b -> new int []{a,b, (int) Math.sqrt(a * a + b * b )});
+        // Produce triples
+        // The third element of the tuple must be an integer
+        Stream<double []> pythagoreanTriplesTwo =
+                IntStream.rangeClosed(1, 100).boxed()
+                .flatMap(a -> IntStream.rangeClosed(a, 100).mapToObj(b -> new double[] {a, b, Math.sqrt(a*a + b*b)})
+                .filter(t -> t[2] % 1 ==0));
     }
 }
