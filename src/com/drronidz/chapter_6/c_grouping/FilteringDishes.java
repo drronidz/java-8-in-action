@@ -73,6 +73,11 @@ public class FilteringDishes {
                 .collect(groupingBy(Dish::getType, collectingAndThen(
                         maxBy(comparingInt(Dish::getCalories)),
                         Optional::get)));
+
+        // Other examples of collectors used in conjunction with groupingBy
+        Map<Dish.Type, Integer> totalCaloriesType = menu
+                .stream()
+                .collect(groupingBy(Dish::getType, summingInt(Dish::getCalories)));
     }
 
     public enum CaloricLevel {
