@@ -9,13 +9,14 @@ DATE : 4/15/2023 5:26 PM
 
 import com.drronidz.chapter_5.Dish;
 
+import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 import static java.util.Arrays.asList;
-import static java.util.stream.Collectors.counting;
-import static java.util.stream.Collectors.groupingBy;
+import static java.util.stream.Collectors.*;
 
 public class FilteringDishes {
 
@@ -57,6 +58,11 @@ public class FilteringDishes {
         // Collecting data in subgroups
         Map<Dish.Type, Long> typesCount = menu.stream().collect(
                 groupingBy(Dish::getType, counting()));
+
+        Map<Dish.Type, Optional<Dish>> mostCaloricType =
+                menu.stream()
+                .collect(groupingBy(Dish::getType, maxBy(Comparator.comparingInt(Dish::getCalories))));
+
     }
 
     public enum CaloricLevel {
