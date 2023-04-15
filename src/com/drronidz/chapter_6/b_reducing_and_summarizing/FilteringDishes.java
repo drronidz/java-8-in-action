@@ -87,5 +87,14 @@ public class FilteringDishes {
                     return l1;
                 }
         );
+
+        // Collection framework flexibility: doing the same operation in different ways
+        // Initial value
+        // Transformation function
+        // Aggregating function
+        int totalCaloriesThree = menu
+                .stream()
+                .collect(reducing(0, Dish::getCalories, Integer::sum));
+
     }
 }
