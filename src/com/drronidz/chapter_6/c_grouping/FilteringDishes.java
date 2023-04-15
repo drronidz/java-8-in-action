@@ -16,6 +16,7 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 import static java.util.Arrays.asList;
+import static java.util.Comparator.comparingInt;
 import static java.util.stream.Collectors.*;
 
 public class FilteringDishes {
@@ -61,8 +62,17 @@ public class FilteringDishes {
 
         Map<Dish.Type, Optional<Dish>> mostCaloricType =
                 menu.stream()
-                .collect(groupingBy(Dish::getType, maxBy(Comparator.comparingInt(Dish::getCalories))));
+                .collect(groupingBy(Dish::getType, maxBy(comparingInt(Dish::getCalories))));
 
+        // Adapting the collector result to a different type
+        // Classification function
+        // Wrapped collector
+        // Transformation function
+        Map<Dish.Type, Dish> mostCaloricTypeTwo =
+                menu.stream()
+                .collect(groupingBy(Dish::getType, collectingAndThen(
+                        maxBy(comparingInt(Dish::getCalories)),
+                        Optional::get)));
     }
 
     public enum CaloricLevel {
