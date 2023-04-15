@@ -10,6 +10,7 @@ DATE : 4/14/2023 6:24 PM
 import com.drronidz.chapter_5.Dish;
 
 import java.util.Comparator;
+import java.util.IntSummaryStatistics;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -56,5 +57,9 @@ public class FilteringDishes {
 
         // Averaging
         double averageCalories = menu.stream().collect(averagingInt(Dish::getCalories));
+
+        // Summary statistics
+        IntSummaryStatistics menuStatistics =
+                menu.stream().collect(summarizingInt(Dish::getCalories));
     }
 }
