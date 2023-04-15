@@ -15,8 +15,7 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 import static java.util.Arrays.asList;
-import static java.util.stream.Collectors.maxBy;
-import static java.util.stream.Collectors.minBy;
+import static java.util.stream.Collectors.*;
 
 public class FilteringDishes {
 
@@ -51,5 +50,8 @@ public class FilteringDishes {
         Optional<Dish> minCalorieDish = menu
                 .stream()
                 .collect(minBy(dishCaloriesComparator));
+
+        // Summarization
+        int totalCalories = menu.stream().collect(summingInt(Dish::getCalories));
     }
 }
