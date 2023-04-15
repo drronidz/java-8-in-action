@@ -9,10 +9,14 @@ DATE : 4/14/2023 6:24 PM
 
 import com.drronidz.chapter_5.Dish;
 
+import java.util.Comparator;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 import static java.util.Arrays.asList;
+import static java.util.stream.Collectors.maxBy;
+import static java.util.stream.Collectors.minBy;
 
 public class FilteringDishes {
 
@@ -35,5 +39,17 @@ public class FilteringDishes {
 
         // Far more directly
         long howManyDishesOne = menu.stream().count();
+
+        // Finding max and min in a stream of values
+        Comparator<Dish> dishCaloriesComparator =
+                Comparator.comparingInt(Dish::getCalories);
+
+        Optional<Dish> maxCalorieDish = menu
+                .stream()
+                .collect(maxBy(dishCaloriesComparator));
+
+        Optional<Dish> minCalorieDish = menu
+                .stream()
+                .collect(minBy(dishCaloriesComparator));
     }
 }
