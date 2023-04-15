@@ -9,11 +9,9 @@ DATE : 4/14/2023 6:24 PM
 
 import com.drronidz.chapter_5.Dish;
 
-import java.util.Comparator;
-import java.util.IntSummaryStatistics;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import static java.util.Arrays.asList;
 import static java.util.stream.Collectors.*;
@@ -76,5 +74,18 @@ public class FilteringDishes {
                 .stream()
                 .collect(reducing((dishOne, dishTwo) -> dishOne.getCalories() >
                         dishTwo.getCalories() ? dishOne : dishTwo));
+
+        // Collect vs Reduce
+        Stream<Integer> stream = Arrays.asList(1, 2, 3, 4, 5, 6).stream();
+        List<Integer> numbers = stream.reduce(
+                new ArrayList<>(),
+                (List<Integer> l, Integer e) ->
+                { l.add(e);
+                return l;},
+                (List<Integer> l1, List<Integer> l2) -> {
+                    l1.addAll(l2);
+                    return l1;
+                }
+        );
     }
 }
