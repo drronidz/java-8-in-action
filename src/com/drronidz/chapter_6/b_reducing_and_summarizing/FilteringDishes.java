@@ -61,5 +61,8 @@ public class FilteringDishes {
         // Summary statistics
         IntSummaryStatistics menuStatistics =
                 menu.stream().collect(summarizingInt(Dish::getCalories));
+
+        // Joining Strings (non readable)
+        String shortMenuOne = menu.stream().map(Dish::getName).collect(joining());
     }
 }
