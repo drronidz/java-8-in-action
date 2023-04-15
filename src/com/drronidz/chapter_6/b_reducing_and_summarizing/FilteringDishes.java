@@ -64,5 +64,8 @@ public class FilteringDishes {
 
         // Joining Strings (non readable)
         String shortMenuOne = menu.stream().map(Dish::getName).collect(joining());
+
+        // Joining Strings (readable)
+        String shortMenuReadable = menu.stream().map(Dish::getName).collect(joining(","));
     }
 }
