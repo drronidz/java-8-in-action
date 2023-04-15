@@ -54,7 +54,9 @@ public class FilteringDishes {
                                     else return CaloricLevel.FAT;
                                 })));
 
-
+        // Collecting data in subgroups
+        Map<Dish.Type, Long> typesCount = menu.stream().collect(
+                groupingBy(Dish::getType, counting()));
     }
 
     public enum CaloricLevel {
