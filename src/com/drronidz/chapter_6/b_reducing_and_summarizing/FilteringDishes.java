@@ -96,5 +96,18 @@ public class FilteringDishes {
                 .stream()
                 .collect(reducing(0, Dish::getCalories, Integer::sum));
 
+        // Quiz
+        String shortMenuQuiz = menu.stream().map(Dish::getName).collect(joining());
+        System.out.println(shortMenuQuiz);
+
+        // 1 (Valid)
+        String shortMenuQuizV1 = menu.stream().map(Dish::getName).collect(reducing((s1, s2) -> s1 + s2)).get();
+
+        // 2 (Non valid)
+        // String shortMenuQuizV2 = menu.stream().collect(reducing((d1, d2) -> d1.getName() + d2.getName())).get();
+
+        // 3 (Valid)
+        String shortMenuQuizV3 = menu.stream().collect(reducing("", Dish::getName, (s1, s2) -> s1 + s2));
+
     }
 }
