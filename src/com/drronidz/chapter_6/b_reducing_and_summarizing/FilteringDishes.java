@@ -67,5 +67,14 @@ public class FilteringDishes {
 
         // Joining Strings (readable)
         String shortMenuReadable = menu.stream().map(Dish::getName).collect(joining(","));
+
+        // Generalized summarization with reduction
+        int totalCaloriesTwo = menu.stream().collect(reducing(0, Dish::getCalories, (i,j) -> i + j));
+
+        // Highest-calorie dish using the one-argument version of reducing as follows
+        Optional<Dish> mostCalorieDish = menu
+                .stream()
+                .collect(reducing((dishOne, dishTwo) -> dishOne.getCalories() >
+                        dishTwo.getCalories() ? dishOne : dishTwo));
     }
 }
