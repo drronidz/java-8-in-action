@@ -53,5 +53,8 @@ public class FilteringDishes {
 
         // Summarization
         int totalCalories = menu.stream().collect(summingInt(Dish::getCalories));
+
+        // Averaging
+        double averageCalories = menu.stream().collect(averagingInt(Dish::getCalories));
     }
 }
